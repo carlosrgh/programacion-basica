@@ -1,0 +1,92 @@
+ JUnit 5, Maven y NetBeans nos permite escribir y ejecutar pruebas unitarias de manera fácil y eficiente en la consola de Windows. 
+ Con solo unos pocos pasos, podemos asegurarnos de que nuestro código funcione correctamente en diferentes situaciones y evitar errores costosos en producción.
+ 
+ Para comprobar si Java está instalado en una terminal de Windows, puede seguir los siguientes pasos:
+    Abra una ventana de símbolo del sistema en Windows haciendo clic en Inicio y escribiendo "cmd" en el cuadro de búsqueda.
+
+    Escriba el siguiente comando en la ventana del símbolo del sistema y presione Enter:
+    java -version
+
+    Si Java está instalado, verá información sobre la versión de Java instalada en su computadora.
+
+Ejemplo:
+C:>java -version
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.231-b11, mixed mode)
+
+Para comprobar si Maven está instalado en una terminal de Windows, puede seguir los siguientes pasos:
+
+    Abra una ventana de símbolo del sistema en Windows haciendo clic en Inicio y escribiendo "cmd" en el cuadro de búsqueda.
+
+    Escriba el siguiente comando en la ventana del símbolo del sistema y presione Enter:
+
+    mvn -v
+
+    Si Maven está instalado, verá información sobre la versión de Maven instalada en su computadora.
+
+Ejemplo:
+C:>mvn -v
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: C:\apache-maven-3.6.3
+Java version: 1.8.0_231, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk1.8.0_231\jre
+Default locale: en_US, platform encoding: Cp1252
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+ 
+
+# Como realizar Junit Test 5 con Maven y NetBeans en la consola de Windows. 
+
+Para realizar pruebas JUnit 5 con Maven y NetBeans en la consola de Windows, sigue estos pasos:
+- Asegúrate de tener una versión reciente de Maven y NetBeans instalada en tu sistema.
+
+- Crea un nuevo proyecto en NetBeans utilizando el asistente de proyecto y selecciona "Proyecto Maven" como tipo de proyecto. Asegúrate de seleccionar JUnit 5 como dependencia de pruebas en el asistente.
+
+
+Una vez creado el proyecto, abre el archivo pom.xml y asegúrate de que la dependencia de JUnit 5 esté incluida. Si no está incluida, añade la siguiente línea en el archivo "dependencias":
+
+
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.7.0</version>
+    <scope>test</scope>
+</dependency>
+
+- Crea una nueva clase de prueba en tu proyecto, utilizando el asistente de NetBeans. Asegúrate de seleccionar JUnit 5 como la biblioteca de pruebas.
+
+- Escribir tus pruebas en la clase de prueba recién creada utilizando las anotaciones de JUnit 5 (@Test, @BeforeEach, etc.).
+
+- Abre la consola de Windows y navega hasta la carpeta del proyecto.
+
+- Ejecuta el siguiente comando para ejecutar las pruebas:
+mvn test
+Si todo está configurado correctamente (al comienzo deberías haber comprobado que java y maven estan instalados en una terminal de Windows), verás los resultados de las pruebas en la consola.
+Ten en cuenta que estos son solo los pasos básicos para configurar y ejecutar pruebas JUnit 5 con Maven y NetBeans en la consola de Windows. Puede ser necesario ajustar configuraciones adicionales en función de las necesidades específicas de tu proyecto.
+
+Aquí hay un ejemplo de código real que utiliza JUnit 5, Maven y NetBeans en la consola de Windows:
+
+Supongamos que queremos probar una clase "Calculator" que tiene un método "add" que suma dos números. Primero, creamos un nuevo proyecto Maven en NetBeans y agregamos la dependencia de JUnit 5 al archivo pom.xml. Luego, creamos una clase de prueba "CalculatorTest" y escribimos nuestro primer caso de prueba:
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CalculatorTest {
+@Test
+public void testAdd() {
+Calculator calculator = new Calculator();
+int result = calculator.add(2, 3);
+assertEquals(5, result);
+}
+}
+
+En este caso de prueba, creamos una instancia de la clase "Calculator", llamamos a su método "add" con dos números (2 y 3) y comprobamos que el resultado es 5. Si la prueba falla, se lanzará una excepción de aserción y se mostrará en la consola.
+
+Después de escribir más casos de prueba, abrimos la consola de Windows y navegamos hasta la carpeta del proyecto. Ejecutamos el comando "mvn test" para compilar y ejecutar todas las pruebas del proyecto. Si todo está bien, veremos algo así en la consola:
+T E S T S
+
+Running CalculatorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in CalculatorTest
+
+OK
+
+Este resultado indica que se ejecutó un caso de prueba en la clase "CalculatorTest" sin errores ni fallos. Si hay errores o fallos, se mostrarán en la consola para que podamos corregirlos.
